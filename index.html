@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caixa Eletrônico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;color: #000;
+            width: auto; color: black;
+            padding-left: 0cap;
+            border-color: blue;
+            background-color: aquamarine;
+        }
+
+        button {
+            background-color: #FFC107;
+        border: none;
+        color: black;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: transform 0.5s ease;
+        transform: rotate(360deg);
+        
+        animation: pulse 2s infinite;
+            
+    }
+        
+
+        
+    </style>
+</head>
+<body>
+
+<h1>Caixa Eletrônico</h1>
+
+<div id="saldo">Saldo atual: R$ 1000.00</div>
+
+<button onclick="consultarSaldo()">Consultar Saldo</button>
+<button onclick="realizarDeposito()">Realizar Depósito</button>
+<button onclick="realizarSaque()">Realizar Saque</button>
+
+<script>
+    let saldo = 1000.0;
+
+    function consultarSaldo() {
+        alert("Saldo atual: R$ " + saldo.toFixed(2));
+    }
+
+    function realizarDeposito() {
+        let valorDeposito = prompt("Digite o valor do depósito:");
+        if (valorDeposito !== null && !isNaN(valorDeposito) && parseFloat(valorDeposito) > 0) {
+            saldo += parseFloat(valorDeposito);
+            alert("Depósito de R$ " + parseFloat(valorDeposito).toFixed(2) + " realizado com sucesso.");
+        } else {
+            alert("Valor de depósito inválido.");
+        }
+        atualizarSaldo();
+    }
+
+    function realizarSaque() {
+        let valorSaque = prompt("Digite o valor do saque:");
+        if (valorSaque !== null && !isNaN(valorSaque) && parseFloat(valorSaque) > 0) {
+            if (parseFloat(valorSaque) <= saldo) {
+                saldo -= parseFloat(valorSaque);
+                alert("Saque de R$ " + parseFloat(valorSaque).toFixed(2) + " realizado com sucesso.");
+            } else {
+                alert("Saldo insuficiente.");
+            }
+        } else {
+            alert("Valor de saque inválido.");
+        }
+        atualizarSaldo();
+    }
+
+    function atualizarSaldo() {
+        document.getElementById("saldo").innerText = "Saldo atual: R$ " + saldo.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
